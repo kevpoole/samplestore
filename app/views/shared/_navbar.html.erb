@@ -1,0 +1,25 @@
+<div class="w-full p-2 text-xl font-[Orbitron] z-10 fixed top-0 bg-slate-800 flex items-center">
+    <ul class="flex justify-between w-full text-gray-200 tracking-widest px-24">
+        <% if current_admin %>
+          <li><%= link_to "Admin Dashboard", admin_products_path, class: "bg-gray-200 font-sans p-2 w-fit rounded tracking-wide  text-black" %></li>  
+          <li><%= link_to 'Sign Out', destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure you want to sign out?' }, class: "bg-gray-200 p-2 text-black font-sans w-full rounded" %> </li>
+        <% end %>
+        <li><%= link_to "Home", "/" %></li>
+        <li><%= link_to "Music", "/" %></li>
+        <li><%= link_to "Store", categories_path %></li>
+        <li><%= link_to "Shows", "/" %></li>
+    </ul>
+    <div  id="cart_navbar">
+        <%= link_to "/" do %>
+            <div class="relative flex items-center text-sm h-full w-20 text-white"> 
+                <%= heroicon "shopping-cart", class: "w-8 h-8 text-white" %>
+                <% if @current_cart && @current_cart.cart_items.any? %>
+                    <div class="flex items-center justify-center border border-white absolute h-4 w-4 p-3 top-0 right-4 rounded-full bg-red-800 text-white"> <%= @current_cart.cart_items.count %> 
+                    </div>
+                <% end %>
+                <p class="pt-4" >Cart</p>
+            </div>
+        <% end %>
+    </div>
+</div>
+</div>

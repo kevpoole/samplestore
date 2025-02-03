@@ -1,0 +1,52 @@
+<% content_for :title, "Products" %>
+
+<div class="w-full p-4">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex w-1/2 justify-between items-center">
+    <h2 class="font-bold text-3xl">Products</h2>
+    <%= link_to "New Product", new_admin_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+  </div>
+
+  <div id="admin_products" class="w-full">
+  <% if @admin_products.any? %>
+    <% @admin_products.group_by(&:category).each do |category, products| %>
+      <h2 class="text-xl font-bold mt-8 mb-4"><%= category.name %></h2>
+      <table class="min-w-full border-collapse border border-gray-300 mb-8">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="border border-gray-300 px-4 py-2">Name</th>
+            <th class="border border-gray-300 px-4 py-2">Active</th>
+            <th class="border border-gray-300 px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products.each do |product| %>
+            <tr class="hover:bg-gray-100">
+              <td class="border flex items-center border-gray-300 px-4 py-2">
+              <div class="h-12 w-12 object-cover mr-4">
+                <%= product.images.any? ? image_tag(product.images.first) : image_tag("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=") %>
+              </div>
+              <%= product.name %>
+              
+              </td>
+             
+              <td class="border border-gray-300 px-4 py-2"><%= product.active ? "Yes" : "No" %></td>
+              <td class="border border-gray-300 px-4 py-2">
+                <%= link_to 'Edit', edit_admin_product_path(product), class: "text-blue-500 mr-4 hover:underline" %>
+                <%= link_to 'Delete', [:admin, product], method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %> 
+                <%=link_to "View", product_path(product), class: "bg-gray-200 py-1 px-3 ml-4 rounded" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% else %>
+    <p class="text-center my-10">No products found.</p>
+  <% end %>
+</div>
+
+</div>

@@ -1,0 +1,6 @@
+<%= link_to category do %>
+  <div class="relative" id="<%= dom_id category %>">
+    <%= image_tag category.image, class: "w-full h-80 object-cover" %>
+    <p class="p-2 bg-white w-full opacity-80 absolute bottom-4 text-3xl tracking-wider font-[Orbitron] text-center"> <%=category.name %> </p>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<% content_for :title, "Categories" %>
+
+<div class="w-full p-4">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex w-1/2 justify-between items-center">
+    <h2 class="font-bold text-3xl">Product Categories</h2>
+    <%= link_to "New category", new_admin_category_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+  </div>
+
+    <% if @admin_categories.any? %>
+    <% @admin_categories.each do |category| %>
+    <div id="admin_categories" class="w-1/2 px-8 mt-4 border border-gray-200 hover:bg-gray-200 flex items-center">
+        <div class="h-12 w-12 object-cover mr-4">
+        <%= category.image.present? ? image_tag(category.image) : image_tag("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=") %>
+        </div>
+        <%= render category %>
+        <%= link_to "Edit", edit_admin_category_path(category), class: " rounded-md px-3.5 py-2.5 h-fit hover:bg-gray-400 inline-block font-medium" %>
+        <%= button_to "Delete", [:admin, category], method: :delete, class: "rounded-md px-3.5 py-2.5 text-red-600 hover:bg-red-500 hover:text-white font-medium" %>
+    </div>  
+      <% end %>
+    <% else %>
+      <p class="text-center my-10">No categories found.</p>
+    <% end %>
+</div>

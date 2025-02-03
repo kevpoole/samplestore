@@ -1,0 +1,74 @@
+<div class="flex mx-8 w-full flex-col bg-white md:flex-row " data-controller="image-swap">  
+  <div class="md:w-1/2 flex items-center">
+    <div class="flex flex-col bg-white p-8">
+      <div class="flex bg-white">
+        <%= link_to "Store", categories_path %>
+        <%= link_to " > #{@product.category.name}", @product.category if @product.category %>
+        <%= link_to " > #{@product.name}", @product %>
+      </div>
+      <% if @product.images.any? %>
+        <%= image_tag @product.images.last, data: { image_swap_target: "mainImage" }, class: "w-[450px] h-[450px] object-cover" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="md:w-1/2 bg-white relative flex flex-col justify-center gap-4 py-4 pl-12">
+    <%= link_to "X", @product.category, class: "border border-2 border-gray-400 rounded-lg text-center absolute top-4 right-4 text-xl py-1 px-2 w-fit" %>
+    <% if current_admin %>
+      <%= link_to "Back to Admin", admin_products_path, class: "border border-2 border-gray-400 rounded-lg text-center absolute top-4 right-16 text-xl py-1 px-2 w-fit" %>
+    <% end %>
+    <p class="text-3xl tracking-widest font-orbitron"><%= @product.name %></p>
+    <p class="text-2xl py-2"><%= @product.description %></p>
+    <p class="text-2xl"><%= number_to_currency @product.price %></p>
+    <%
+=begin%>
+ <div class="flex w-3/4 py-4 items-center gap-4 mr-auto">
+      <%= link_to "Buy Now", product_buy_now_path(@product), class: "h-full bg-yellow-400 text-black px-4 py-2 rounded w-fit" %>
+      <%= render "add_to_cart", product: @product %>
+    </div> 
+<%
+=end%>
+
+    <% if @product.images.length > 1 %>
+      <div class="w-full mt-4 flex gap-2 overflow-auto">
+        <% @product.images.each do |image| %>
+          <%= image_tag image, data: { image_swap_target: "thumbnail", action: "click->image-swap#replaceMainImage", src: url_for(image) }, class: "w-36 h-36 object-cover cursor-pointer hover:brightness-75" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%
+=begin%>
+ <% if @product.category.name == "Apparel" %>
+      <div class="mt-4">
+        <p class="text-xl font-bold">Choose Size:</p>
+        <div class="flex gap-2">
+          <% if @product.options["Size"].present? %>
+          <% sizes = Array(@product.options["Size"]) %>
+          <% sizes.each do |size| %>
+              <p><%= size.strip %></p>
+            <% end %>
+          <% else %>
+            <p>No size options available</p>
+          <% end %>
+        </div>
+      </div>
+    <% elsif @product.category.name == "Albums" %>
+      <div class="mt-4">
+        <p class="text-xl font-bold">Choose Format:</p>
+        <div class="flex gap-2">
+          <% if @product.options["Format"].present? %>
+            <% formats = @product.options["Format"].split(",") %> 
+            <% formats.each do |format| %>
+              <p><%= format.strip %></p>
+            <% end %>
+          <% else %>
+            <p>No format options available</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %> 
+<%
+=end%>
+  </div>
+</div>
