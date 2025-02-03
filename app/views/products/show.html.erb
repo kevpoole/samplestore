@@ -20,14 +20,38 @@
     <p class="text-3xl tracking-widest font-orbitron"><%= @product.name %></p>
     <p class="text-2xl py-2"><%= @product.description %></p>
     <p class="text-2xl"><%= number_to_currency @product.price %></p>
-    <%
-=begin%>
- <div class="flex w-3/4 py-4 items-center gap-4 mr-auto">
-      <%= link_to "Buy Now", product_buy_now_path(@product), class: "h-full bg-yellow-400 text-black px-4 py-2 rounded w-fit" %>
+     <% if @product.category.name == "T-Shirts" %>
+    <div class="my-5">
+      <% if @product.size_options %>
+      <div class="flex">
+        <% @product.size_options.each do |size| %>
+          <label data-value="<%= size %>">
+            <input type="radio" name="size_option" class="hidden peer"  value="<%= size %>" >
+                        <span class=" option-box px-4 py-2 border-2 mr-2 border-gray-300 rounded text-center font-semibold text-gray-700 hover:bg-gray-400 peer-checked:bg-gray-400 peer-checked:text-white ">
+            <%= size %>
+          </label>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  <% elsif @product.category.name == "Albums" %>
+    <div class="my-5">
+      <% if @product.format_options  %>
+      <div class="flex">
+        <% @product.format_options.each do |format| %>
+          <label data-value="<%= format %>">
+            <input class="hidden peer" type="radio" name="format_option" value="<%= format %>" >
+            <span class=" option-box px-4 py-2 border-2 border-gray-200 mr-2 rounded text-center font-semibold text-gray-700 hover:bg-gray-400 peer-checked:bg-gray-400 peer-checked:text-white">
+            <%= format %>
+          </label>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+    <div class="flex w-3/4 py-4 items-center gap-4 mr-auto">
       <%= render "add_to_cart", product: @product %>
     </div> 
-<%
-=end%>
 
     <% if @product.images.length > 1 %>
       <div class="w-full mt-4 flex gap-2 overflow-auto">
@@ -37,38 +61,10 @@
       </div>
     <% end %>
 
-    <%
-=begin%>
- <% if @product.category.name == "Apparel" %>
-      <div class="mt-4">
-        <p class="text-xl font-bold">Choose Size:</p>
-        <div class="flex gap-2">
-          <% if @product.options["Size"].present? %>
-          <% sizes = Array(@product.options["Size"]) %>
-          <% sizes.each do |size| %>
-              <p><%= size.strip %></p>
-            <% end %>
-          <% else %>
-            <p>No size options available</p>
-          <% end %>
-        </div>
-      </div>
-    <% elsif @product.category.name == "Albums" %>
-      <div class="mt-4">
-        <p class="text-xl font-bold">Choose Format:</p>
-        <div class="flex gap-2">
-          <% if @product.options["Format"].present? %>
-            <% formats = @product.options["Format"].split(",") %> 
-            <% formats.each do |format| %>
-              <p><%= format.strip %></p>
-            <% end %>
-          <% else %>
-            <p>No format options available</p>
-          <% end %>
-        </div>
-      </div>
-    <% end %> 
-<%
-=end%>
+   
+
+    
+
+  
   </div>
 </div>

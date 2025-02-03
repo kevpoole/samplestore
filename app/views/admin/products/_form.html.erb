@@ -51,6 +51,26 @@
     </div>
   </div>
 
+  <% if admin_product.category.name == "T-Shirts" %>
+    <div class="my-5">
+      <%= form.label :size_options, "Size Options" %>
+      <% ["S", "M", "L"].each do |size| %>
+        <div>
+          <%= form.check_box :size_options, { multiple: true }, size, nil %> <%= size %>
+        </div>
+      <% end %>
+    </div>
+  <% elsif admin_product.category.name == "Albums" %>
+    <div class="my-5">
+      <%= form.label :format_options, "Format Options" %>
+      <% ["Vinyl", "Cassette", "Digital"].each do |format| %>
+        <div>
+          <%= form.check_box :format_options, { multiple: true }, format, nil %> <%= format %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
   
 
   <div class="inline">

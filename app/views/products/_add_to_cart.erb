@@ -1,8 +1,8 @@
 <div id="<%= dom_id(@product, :add_to_cart) %>">
   <% if @current_cart && @current_cart.products.exists?(id: @product.id) %>
     <% cart_item = @current_cart.cart_items.find_by(product_id: @product.id) %>
-      <%= button_to "Remove from Cart", cart_item_path(cart_item), method: :delete, class: "bg-slate-400 text-black px-4 py-2 rounded", data: { turbo: "false" } %>
+      <%= button_to "Remove from Cart", root_path, method: :delete, class: "bg-slate-400 text-black px-4 py-2 rounded", data: { turbo: "false" } %>
   <% else %>
-    <%= button_to "Add to Cart", carts_path(product_id: @product.id), method: :post, class: "bg-slate-400 text-black px-4 py-2 rounded" %>
+    <%= button_to "Add to Cart", root_path, method: :post, class: "bg-slate-400 text-black px-4 py-2 rounded cursor-pointer" %>
   <% end %>
 </div>
