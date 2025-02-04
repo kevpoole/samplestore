@@ -31,6 +31,11 @@ class CheckoutsController < ApplicationController
     end
   
     def success
+        if @current_cart.present?
+            @current_cart.cart_items.destroy_all
+            @current_cart.destroy
+            session[:current_cart_id] = nil
+          end
       redirect_to root_path, notice: "Payment successful!"
     end
   

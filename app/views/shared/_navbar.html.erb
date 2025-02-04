@@ -2,7 +2,7 @@
     <ul class="flex justify-between w-full text-gray-200 tracking-widest px-24">
         <% if current_admin %>
           <li><%= link_to "Admin Dashboard", admin_products_path, class: "bg-gray-200 font-sans p-2 w-fit rounded tracking-wide  text-black" %></li>  
-          <li><%= link_to 'Sign Out', destroy_admin_session_path, method: :delete, data: { confirm: 'Are you sure you want to sign out?' }, class: "bg-gray-200 p-2 text-black font-sans w-full rounded" %> </li>
+          
         <% end %>
         <li><%= link_to "Home", "/" %></li>
         <li><%= link_to "Music", "/" %></li>

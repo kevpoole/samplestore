@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <% if admin_product.category.name == "T-Shirts" %>
+  <% if (admin_product.category&.name == "T-Shirts") %>
     <div class="my-5">
       <%= form.label :size_options, "Size Options" %>
       <% ["S", "M", "L"].each do |size| %>
@@ -60,7 +60,7 @@
         </div>
       <% end %>
     </div>
-  <% elsif admin_product.category.name == "Albums" %>
+  <% elsif (admin_product.category&.name == "Albums") %>
     <div class="my-5">
       <%= form.label :format_options, "Format Options" %>
       <% ["Vinyl", "Cassette", "Digital"].each do |format| %>
@@ -69,6 +69,8 @@
         </div>
       <% end %>
     </div>
+  <% else %>
+      <div>  </div>
   <% end %>
 
   
