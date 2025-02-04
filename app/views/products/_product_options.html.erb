@@ -1,0 +1,33 @@
+<div class="my-5" data-controller="cart">
+  <% if options.any? %>
+    <div class="flex">
+      <% if @current_cart && !@current_cart.products.exists?(id: @product.id) %>
+        <% options.each do |option| %>
+          <label data-action="change->cart#selectOption" data-value="<%= option %>">
+            <input type="radio" name="selected_option" class="hidden peer" value="<%= option %>">
+            <span class="option-box px-4 py-2 border-2 border-gray-300 mr-2 rounded text-center font-semibold text-gray-700 hover:bg-gray-400 peer-checked:bg-gray-400 peer-checked:text-white">
+              <%= option %>
+            </span>
+          </label>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mt-4" id="<%= dom_id(@product, :add_to_cart) %>">
+    <%= form_with url: carts_path, method: :post, data: { action: "submit->cart#submitForm", cart_target: "form" }, local: true do |form| %>
+      <input type="hidden" name="product_id" value="<%= @product.id %>">
+      <input type="hidden" id="selected_option" name="selected_option" data-cart-target="hiddenInput" value="">
+
+      <% if @current_cart && @current_cart.products.exists?(id: @product.id) %>
+        <% cart_item = @current_cart.cart_items.find_by(product_id: @product.id) %>
+        <h2 class="mb-2">Item in Cart!</h2>
+        <%= link_to "View Cart", cart_path(@current_cart.secret_id), class: "bg-slate-400 text-black px-4 py-2 mt-4 w-fit rounded cursor-pointer" %>
+      <% else %>
+        <button type="submit" class="bg-slate-400 text-black px-4 py-2 mt-4 rounded cursor-pointer">
+          Add to Cart
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+</div>

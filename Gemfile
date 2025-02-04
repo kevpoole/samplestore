@@ -71,3 +71,5 @@ group :development do
 end
 
 gem 'heroicon-rails', '~> 0.2.8'
+
+gem "stripe"
