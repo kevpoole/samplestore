@@ -19,6 +19,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mingzat&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <meta name="stripe-public-key" content="<%= Rails.application.credentials.dig(:stripe, :public_key) %>">
+    <script src="https://js.stripe.com/v3/"></script>
+
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>

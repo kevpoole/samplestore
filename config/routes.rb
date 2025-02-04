@@ -35,4 +35,11 @@ Rails.application.routes.draw do
 
   get "admin" => "admin#index"
 
+  post 'checkout', to: 'checkouts#create', as: 'cart_checkout'
+  get 'checkout/success', to: 'checkouts#success'
+  get 'checkout/cancel', to: 'checkouts#cancel'
+
+  get 'checkout', to: 'checkouts#show', as: 'checkout'
+  post 'checkout/create', to: 'checkouts#create'
+
 end

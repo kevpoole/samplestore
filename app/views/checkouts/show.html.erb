@@ -1,0 +1,8 @@
+<div class="flex flex-col items-center p-8">
+  <h2 class="text-3xl mb-4">Complete Your Purchase</h2>
+  <div data-controller="stripe-checkout"
+     data-stripe-checkout-url-value="<%= checkout_create_path %>"
+     data-secret-id="<%= @cart.secret_id %>">
+</div>
+
+</div>

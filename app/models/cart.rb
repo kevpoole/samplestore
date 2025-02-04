@@ -7,6 +7,6 @@ class Cart < ApplicationRecord
     private
 
     def set_secret_id 
-        self.secret_id = SecureRandom.uuid + DateTime.now.to_s
+        self.secret_id = SecureRandom.uuid
     end
 end

@@ -6,7 +6,7 @@
         <% end %>
     </div>
     <p class="mb-4 text-2xl">Cart Total: <%= number_to_currency(@cart_items.sum { |item| item.product.price }) %></p>
-    <%= link_to "Checkout", root_path, class: "p-2 w-fit bg-blue-600 mb-4 text-white rounded" %>   
+    <%= button_to "Checkout", checkout_create_path(secret_id: @cart.secret_id), method: :post, data: { controller: "stripe-checkout", stripe_checkout_url_value: checkout_path, turbo: false },  class: "p-2 w-fit bg-blue-600 mb-4 text-white rounded" %>
     <%= link_to "Back to Store", categories_path, class: "p-2 w-fit bg-gray-600 text-white rounded" %>
     <% if notice.present? %>
         <p class="py-2 w-fit px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
