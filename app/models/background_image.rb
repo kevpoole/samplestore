@@ -8,4 +8,12 @@ class BackgroundImage < ApplicationRecord
       errors.add(:base, "Only one background image is allowed.")
     end
   end
+
+  before_destroy :delete_image_from_s3, prepend: true
+
+  private
+
+  def delete_image_from_s3
+    image.purge if image.attached?
+  end
 end
