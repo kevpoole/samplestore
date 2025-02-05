@@ -1,8 +1,8 @@
 <div class="md:min-w-2/3 w-full relative bg-white mx-12 px-8 flex rounded-lg mt-12">
-  <%= link_to "<<", categories_path, class: "text-black absolute left-24 z-10 top-4 text-xl bg-gray-200 h-fit py-2 px-4 font-orbitron rounded " %>
+  <%= link_to "<<", categories_path, class: "text-black absolute lg:left-24 left-0 z-10 top-4 text-xl bg-gray-200 h-fit py-2 px-4 font-orbitron rounded " %>
   <div class="mx-auto">
     <h2 class="text-black w-full tracking-widest text-center font-orbitron text-4xl bg-white opacity-90 p-4 rounded font-[Orbitron]" > <%= @category.name %> </h2>
-    <div id="products" class="grid grid-cols-3 gap-8 mt-4">
+    <div id="products" class="lg:grid lg:grid-cols-3 flex flex-col gap-8 mt-4">
     <% @products.each do |product| %>
       <% if product.active %>
       <%= render "products/product", product: product %>
