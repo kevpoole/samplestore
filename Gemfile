@@ -75,3 +75,5 @@ gem "stripe"
 gem "pg"
 
 gem 'dotenv-rails'
+
+gem 'net-smtp', '~> 0.5.0'
