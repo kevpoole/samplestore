@@ -1,0 +1,16 @@
+<h1 class="text-3xl font-bold mb-4">Edit Background Image</h1>
+
+<%= form_with model: @admin_background_image, url: admin_background_image_path(@admin_background_image), method: :patch, local: true do |f| %>
+  <% if @admin_background_image && @admin_background_image.image.attached? %>
+  <div class="mb-4">
+    <h2 class="text-xl font-semibold">Current Image</h2>
+    <img src="<%= url_for(@admin_background_image.image) %>" alt="Background Image" class="mt-2 w-full max-w-lg rounded shadow">
+    <%= link_to "Edit Image", edit_admin_background_image_path(@admin_background_image), class: "mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+  </div>
+<% else %>
+  <p class="text-gray-600">No background image set.</p>
+  <%= link_to "Add Background Image", new_admin_background_image_path, class: "mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded " %>
+<% end %>
+
+  <%= f.submit "Update Image", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500" %>
+<% end %>

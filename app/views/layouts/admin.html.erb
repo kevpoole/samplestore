@@ -29,19 +29,22 @@
                 <div class="flex w-full">
                     <ul class="flex flex-col gap-4 p-4 w-full">
                         <li class="flex">
-                            <%=link_to "View Site", "/", class: "w-full bg-gray-200 hover:bg-gray-600 hover:text-white rounded px-4 py-2 text-xl text-center" %>
+                            <%=link_to "View Site", "/", class: "w-full bg-gray-200 hover:bg-gray-600 hover:text-white rounded px-4 py-2 text-xl " %>
                         </li>
                         <li class="flex">
-                            <%= link_to "Products", admin_products_path, class: "w-full rounded px-4 py-2 text-xl text-center #{current_page?(admin_products_path) ? 'bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-600 hover:text-white'}" %>
+                            <%= link_to "Products", admin_products_path, class: "w-full rounded px-4 py-2 text-xl  #{current_page?(admin_products_path) ? 'bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-600 hover:text-white'}" %>
                         </li>
                         <li class="flex">
-                            <%=link_to "Product Categories", admin_categories_path, class: "w-full rounded px-4 py-2 text-xl text-center #{current_page?(admin_categories_path) ? 'bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-600 hover:text-white'}" %>
+                            <%=link_to "Product Categories", admin_categories_path, class: "w-full rounded px-4 py-2 text-xl  #{current_page?(admin_categories_path) ? 'bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-600 hover:text-white'}" %>
                         </li>
                         <li class="flex">
-                            <%=link_to "Shows", admin_shows_path, class: "w-full rounded px-4 py-2 text-xl text-center #{current_page?(admin_shows_path) ? 'bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-600 hover:text-white'}" %>
+                            <%=link_to "Shows", admin_shows_path, class: "w-full rounded px-4 py-2 text-xl  #{current_page?(admin_shows_path) ? 'bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-600 hover:text-white'}" %>
                         </li>
                         <li class="flex">
-                            <%=link_to "Sign Out", destroy_admin_session_path, data: {"turbo-method": :delete, "turbo-confirm": "Sign out?"}, class: "w-full bg-gray-200 hover:bg-gray-600 hover:text-white rounded px-4 py-2 text-xl text-center" %>
+                            <%=link_to "Background Image", admin_background_images_path, class: "w-full rounded px-4 py-2 text-xl  #{current_page?(admin_background_images_path) ? 'bg-gray-600 text-white' : 'bg-gray-200 hover:bg-gray-600 hover:text-white'}" %>
+                        </li>
+                        <li class="flex">
+                            <%=link_to "Sign Out", destroy_admin_session_path, data: {"turbo-method": :delete, "turbo-confirm": "Sign out?"}, class: "w-full bg-gray-200 hover:bg-gray-600 hover:text-white rounded px-4 py-2 text-xl " %>
                         </li>
                         
                         

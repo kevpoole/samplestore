@@ -1,0 +1,7 @@
+<div class="min-h-screen mt-8">
+  <% if @admin_background_image&.image.attached? %>
+    <%= image_tag @admin_background_image.image, class: "w-full h-auto brightness-50" %>
+  <% else %>
+    <p>No background image uploaded.</p>
+  <% end %>
+</div>

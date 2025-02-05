@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :shows
     resources :products
     resources :categories
+    resources :background_images
   end
   devise_for :admins
 
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   resources :carts, param: :secret_id, only: [:create, :show]
 
   resources :cart_items, only: [:destroy]
+
+  resource :background_images, only: [:show, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

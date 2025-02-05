@@ -1,0 +1,5 @@
+<<div class="min-h-screen w-full flex object-cover fixed top-0 z-[-1]">
+  <% if @background_image&.image.attached? %>
+    <%= image_tag @background_image.image, class: "w-full h-auto brightness-40" %>
+  <% end %>
+</div>

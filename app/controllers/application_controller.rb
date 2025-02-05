@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_current_cart
+  before_action :set_background_image
+
 
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
@@ -11,6 +13,10 @@ class ApplicationController < ActionController::Base
       @current_cart = Cart.create
       session[:current_cart_id] = @current_cart.secret_id
     end
+  end
+
+  def set_background_image
+    @background_image = BackgroundImage.first
   end
 
   
