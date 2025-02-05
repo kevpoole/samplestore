@@ -77,3 +77,5 @@ gem "pg"
 gem 'dotenv-rails'
 
 gem 'net-smtp'
+
+gem 'aws-sdk-s3'
