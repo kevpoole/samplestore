@@ -23,17 +23,15 @@ class Admin::CategoriesController < AdminController
 
   # POST /admin/categories or /admin/categories.json
   def create
-    if database_connected?
-      @admin_category = Category.new(admin_category_params)
+    @admin_category = Category.new(admin_category_params)
 
-      respond_to do |format|
-        if @admin_category.save
-          format.html { redirect_to admin_categories_path, notice: "Category was successfully created." }
-          format.json { render :show, status: :created, location: @admin_category }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @admin_category.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @admin_category.save
+        format.html { redirect_to admin_categories_path, notice: "Category was successfully created." }
+        format.json { render :show, status: :created, location: @admin_category }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @admin_category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,13 +51,11 @@ class Admin::CategoriesController < AdminController
 
   # DELETE /admin/categories/1 or /admin/categories/1.json
   def destroy
-    if database_connected?
-      @admin_category.destroy!
+    @admin_category.destroy!
 
-      respond_to do |format|
-        format.html { redirect_to admin_categories_path, status: :see_other, notice: "Category was successfully deleted." }
-        format.json { head :no_content }
-      end
+    respond_to do |format|
+      format.html { redirect_to admin_categories_path, status: :see_other, notice: "Category was successfully deleted." }
+      format.json { head :no_content }
     end
   end
 
