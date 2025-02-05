@@ -1,5 +1,5 @@
 <div class="my-5" data-controller="cart">
-  <% if options.any? %>
+  <% if options.present? && options.any? %>
     <div class="flex">
       <% if @current_cart && !@current_cart.products.exists?(id: @product.id) %>
         <% options.each do |option| %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :shows
     resources :products
     resources :categories
   end
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
       get "success", on: :collection
     end
   end
+
+  resources :shows
 
   resources :carts, param: :secret_id, only: [:create, :show]
 

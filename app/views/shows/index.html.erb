@@ -1,0 +1,12 @@
+
+<div class="min-h-screen mt-24 flex w-full px-36  gap-4 flex-col justify-center items-center">  
+    <h1 class="text-5xl mb-8 font-[Orbitron]">Upcoming Shows</h1>
+<% if @shows.any? %>
+    <% @shows.each do |show| %>
+      <%= render show %>
+    <% end %>
+<% else %>
+<h1>No upcoming shows!</h1>
+<% end %>
+
+</div>

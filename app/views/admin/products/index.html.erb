@@ -17,27 +17,27 @@
       <table class="min-w-full border-collapse border border-gray-300 mb-8">
         <thead>
           <tr class="bg-gray-200">
-            <th class="border border-gray-300 px-4 py-2">Name</th>
-            <th class="border border-gray-300 px-4 py-2">Active</th>
-            <th class="border border-gray-300 px-4 py-2">Actions</th>
+            <th class="border border-gray-300  px-4 py-2">Name</th>
+            <th class="border border-gray-300  px-4 py-2">Active</th>
+            <th class="border border-gray-300  px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
           <% products.each do |product| %>
             <tr class="hover:bg-gray-100">
               <td class="border flex items-center border-gray-300 px-4 py-2">
-              <div class="h-12 w-12 object-cover mr-4">
-                <%= product.images.any? ? image_tag(product.images.first) : image_tag("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=") %>
-              </div>
-              <%= product.name %>
-              
+                <div class="h-12 w-12 object-cover mr-4">
+                  <%= product.images.any? ? image_tag(product.images.first) : image_tag("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=") %>
+                </div>
+                <%= product.name %>
               </td>
-             
               <td class="border border-gray-300 px-4 py-2"><%= product.active ? "Yes" : "No" %></td>
-              <td class="border border-gray-300 px-4 py-2">
+              <td  class="border border-gray-300 px-4 py-2">
+                <div class="flex  h-full items-center px-4 py-2">
                 <%= link_to 'Edit', edit_admin_product_path(product), class: "text-blue-500 mr-4 hover:underline" %>
-                <%= link_to 'Delete', [:admin, product], method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %> 
+                <%= button_to 'Delete', [:admin, product], method: :delete, data: { confirm: "Are you sure?" }, class: " text-red-500 hover:underline" %> 
                 <%=link_to "View", product_path(product), class: "bg-gray-200 py-1 px-3 ml-4 rounded" %>
+                </div>
               </td>
             </tr>
           <% end %>

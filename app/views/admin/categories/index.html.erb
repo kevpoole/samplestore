@@ -7,21 +7,40 @@
 
   <div class="flex w-1/2 justify-between items-center">
     <h2 class="font-bold text-3xl">Product Categories</h2>
-    <%= link_to "New category", new_admin_category_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <%= link_to "New Category", new_admin_category_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
+  <div id="admin_categories" class="w-full">
     <% if @admin_categories.any? %>
-    <% @admin_categories.each do |category| %>
-    <div id="admin_categories" class="w-1/2 px-8 mt-4 border border-gray-200 hover:bg-gray-200 flex items-center">
-        <div class="h-12 w-12 object-cover mr-4">
-        <%= category.image.present? ? image_tag(category.image) : image_tag("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=") %>
-        </div>
-        <%= render category %>
-        <%= link_to "Edit", edit_admin_category_path(category), class: " rounded-md px-3.5 py-2.5 h-fit hover:bg-gray-400 inline-block font-medium" %>
-        <%= button_to "Delete", [:admin, category], method: :delete, class: "rounded-md px-3.5 py-2.5 text-red-600 hover:bg-red-500 hover:text-white font-medium" %>
-    </div>  
-      <% end %>
+      <table class="min-w-full border-collapse border border-gray-300 mt-6">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="border border-gray-300 px-4 py-2">Image</th>
+            <th class="border border-gray-300 px-4 py-2">Category Name</th>
+            <th class="border border-gray-300 px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @admin_categories.each do |category| %>
+            <tr class="hover:bg-gray-100">
+              <td class="border border-gray-300 px-4 py-2 flex items-center">
+                <div class="h-12 w-12 object-cover mr-4">
+                  <%= category.image.attached? ? image_tag(category.image, class: "w-full h-full object-cover rounded") : image_tag("https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=", class: "w-full h-full object-cover rounded") %>
+                </div>
+              </td>
+              <td class="border border-gray-300 px-4 py-2"><%= category.name %></td>
+              <td class="border border-gray-300 px-4 py-2">
+                <div class="flex h-full items-center px-4 py-2">
+                  <%= link_to 'Edit', edit_admin_category_path(category), class: "text-blue-500 mr-4 hover:underline" %>
+                  <%= button_to 'Delete', [:admin, category], method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" %> 
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% else %>
       <p class="text-center my-10">No categories found.</p>
     <% end %>
+  </div>
 </div>

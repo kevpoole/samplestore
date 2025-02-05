@@ -7,7 +7,7 @@
         <li><%= link_to "Home", "/" %></li>
         <li><%= link_to "Music", "/" %></li>
         <li><%= link_to "Store", categories_path %></li>
-        <li><%= link_to "Shows", "/" %></li>
+        <li><%= link_to "Shows", shows_path %></li>
     </ul>
     <div  id="cart_navbar">
         <%= link_to cart_path(@current_cart.secret_id) do %>

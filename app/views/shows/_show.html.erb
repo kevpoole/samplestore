@@ -1,0 +1,12 @@
+<div class="flex w-full justify-between items-center bg-gray-200 py-2 px-8 rounded"> 
+ 
+<div class="flex flex-col gap-8">
+    <p class="text-2xl bg-gray-600 px-4 py-2 rounded text-white"><%= show.date.strftime("%A %B %-d, %Y at %l%p") %></p>
+    <p class="text-xl"><%= show.venue %></p>
+    <p><%= show.description %></p>
+</div> 
+<div>  
+    <%= image_tag show.image, class: "w-64 h-64 object-cover" if show.image? %>
+</div>
+
+</div>

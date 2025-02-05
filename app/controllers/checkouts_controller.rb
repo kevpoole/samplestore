@@ -11,7 +11,7 @@ class CheckoutsController < ApplicationController
           price_data: {
             currency: 'usd',
             product_data: { name: item.product.name,
-            description: "#{item.options}",
+            description: "#{item.options.present? ? item.options : item.product.name}",
             },
             unit_amount: (item.product.price * 100).to_i,
           },

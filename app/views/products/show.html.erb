@@ -13,7 +13,7 @@
   </div>
   
   <div class="md:w-1/2 bg-white relative flex flex-col justify-center gap-4 py-4 pl-12">
-    <%= link_to "X", @product.category, class: "border border-2 border-gray-400 rounded-lg text-center absolute top-4 right-4 text-xl py-1 px-2 w-fit" %>
+    
     <% if current_admin %>
       <%= link_to "Back to Admin", admin_products_path, class: "border border-2 border-gray-400 rounded-lg text-center absolute top-4 right-16 text-xl py-1 px-2 w-fit" %>
     <% end %>
@@ -26,6 +26,8 @@
           <%= render "products/product_options", options: @product.size_options %>
     <% elsif @product.category.name == "Albums" %>
           <%= render "products/product_options", options: @product.format_options %>
+    <% else %>
+          <%= render "products/product_options", options: []%>
     <% end %>
     
 

@@ -16,7 +16,9 @@ export default class extends Controller {
   }
 
   submitForm(event) {
-    if (this.hiddenInputTarget.value === "") {
+    const optionsExist = this.element.querySelectorAll("label").length > 0;
+    console.log(optionsExist)
+    if (optionsExist && this.hiddenInputTarget.value === "") {
       event.preventDefault(); 
       alert("Please select an option before adding to cart.");
     }
