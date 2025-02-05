@@ -23,15 +23,17 @@ class Admin::CategoriesController < AdminController
 
   # POST /admin/categories or /admin/categories.json
   def create
-    @admin_category = Category.new(admin_category_params)
+    if database_connected?
+      @admin_category = Category.new(admin_category_params)
 
-    respond_to do |format|
-      if @admin_category.save
-        format.html { redirect_to admin_categories_path, notice: "Category was successfully created." }
-        format.json { render :show, status: :created, location: @admin_category }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @admin_category.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @admin_category.save
+          format.html { redirect_to admin_categories_path, notice: "Category was successfully created." }
+          format.json { render :show, status: :created, location: @admin_category }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @admin_category.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -51,11 +53,13 @@ class Admin::CategoriesController < AdminController
 
   # DELETE /admin/categories/1 or /admin/categories/1.json
   def destroy
-    @admin_category.destroy!
+    if database_connected?
+      @admin_category.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to admin_categories_path, status: :see_other, notice: "Category was successfully deleted." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to admin_categories_path, status: :see_other, notice: "Category was successfully deleted." }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -68,5 +72,14 @@ class Admin::CategoriesController < AdminController
     # Only allow a list of trusted parameters through.
     def admin_category_params
       params.expect(category: [ :name, :description , :image])
+    end
+
+    def database_connected?
+      # This tries to check the connection using an ActiveRecord query
+      ActiveRecord::Base.connection.active?
+    rescue ActiveRecord::ConnectionNotEstablished, PG::ConnectionBad => e
+      # Log the error if connection is not established
+      Rails.logger.error("Database connection error: #{e.message}")
+      false
     end
 end
