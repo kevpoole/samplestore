@@ -34,16 +34,16 @@ test:
 production:
   primary:
     <<: *default
-    database: <%= ENV['POSTGRES_DB'] %>
+    database: <%= ENV['DATABASE_URL'] %>
   cache:
     <<: *default
-    database: <%= ENV['POSTGRES_DB'] %>
+    database: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    database: <%= ENV['POSTGRES_DB'] %>
+    database: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    database: <%= ENV['POSTGRES_DB'] %>
+    database: <%= ENV['DATABASE_URL'] %>
     migrations_paths: db/cable_migrate
