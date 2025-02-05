@@ -1,0 +1,10 @@
+<div class="min-h-screen mt-24 py-8 mx-12 flex w-full px-36 gap-4 flex-col justify-center items-center">  
+<% if @links.any? %>
+     <% @links.each do |link| %>
+      <%= render link %>
+    <% end %>
+<% else %>
+<h1></h1>
+<% end %>
+
+</div>

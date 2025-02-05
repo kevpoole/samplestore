@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :links
     resources :shows
     resources :products
     resources :categories
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :shows
+
+  resources :links
 
   resources :carts, param: :secret_id, only: [:create, :show]
 
