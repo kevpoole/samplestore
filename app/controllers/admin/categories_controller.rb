@@ -34,6 +34,9 @@ class Admin::CategoriesController < AdminController
         format.json { render json: @admin_category.errors, status: :unprocessable_entity }
       end
     end
+  rescue ActiveRecord::ConnectionNotEstablished => e
+    Rails.logger.error "SolidQueue error: #{e.message}"
+    redirect_to admin_categories_path, alert: "Category created, but background processing failed."
   end
 
   # PATCH/PUT /admin/categories/1 or /admin/categories/1.json
