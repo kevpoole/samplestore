@@ -1,3 +1,1 @@
-<div class="bg-linear-to-t from-gray-500 to-gray-200 rounded-xl flex justify-center text-center text-3xl font-[Orbitron] tracking-widest py-4 px-8 w-full cursor:pointer lg:w-1/2 hover:bg-linear-to-b from-gray-500 to-gray-200">
-   <%= link_to link.name, link.url.starts_with?("http") ? admin_link.url : "https://#{link.url}", target: "_blank", class: "text-black " %>
-</div>
+   <%= link_to link.name, link.url.starts_with?("http") ? admin_link.url : "https://#{link.url}", target: "_blank", class: "bg-linear-to-t from-gray-500 to-gray-200 rounded-xl flex justify-center text-center text-3xl font-[Orbitron] tracking-widest py-4 px-8 w-full cursor:pointer lg:w-1/2 hover:bg-linear-to-b from-gray-500 to-gray-200 text-black" %>
