@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   def set_current_cart
+    session_expiration_period = 6.hours
+
+  # Find all carts where the session has expired (last accessed > 24 hours ago)
+    if session[:current_cart_id].present?
+      Cart.where("updated_at < ?", session_expiration_period.ago).destroy_all
+    end
+
+
     @current_cart = Cart.find_by(secret_id: session[:current_cart_id])
 
     unless @current_cart
