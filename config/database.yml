@@ -32,19 +32,20 @@ test:
 # Store production database in the storage/ directory, which by default
 # is mounted as a persistent Docker volume in config/deploy.yml.
 production:
+  url: <%= ENV['DATABASE_URL'] %>
 
-  url:
-    <<: *default
-    database: <%= ENV['DATABASE_URL'] %>
-  cache:
-    <<: *default
-    database: <%= ENV['DATABASE_URL'] %>
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *default
-    database: <%= ENV['DATABASE_URL'] %>
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *default
-    database: <%= ENV['DATABASE_URL'] %>
-    migrations_paths: db/cable_migrate
+  # url:
+  #   <<: *default
+  #   database: <%= ENV['DATABASE_URL'] %>
+  # cache:
+  #   <<: *default
+  #   database: <%= ENV['DATABASE_URL'] %>
+  #   migrations_paths: db/cache_migrate
+  # queue:
+  #   <<: *default
+  #   database: <%= ENV['DATABASE_URL'] %>
+  #   migrations_paths: db/queue_migrate
+  # cable:
+  #   <<: *default
+  #   database: <%= ENV['DATABASE_URL'] %>
+  #   migrations_paths: db/cable_migrate
