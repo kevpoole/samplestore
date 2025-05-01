@@ -1,4 +1,4 @@
-<div class="w-full h-16 p-2 text-xl font-[Orbitron] z-10 fixed top-0 bg-slate-800 flex items-center justify-between">
+<div class="w-full h-24 p-2 text-3xl font-[Orbitron] z-10 fixed top-0 bg-slate-800 flex items-center justify-between">
   <!-- Hamburger Menu Icon for Mobile -->
   <div class="block lg:hidden">
     <button id="hamburger-menu" class="text-white">
@@ -20,14 +20,14 @@
   <!-- Cart Icon (Always visible) -->
   <div id="cart_navbar">
     <%= link_to cart_path(@current_cart.secret_id) do %>
-      <div class="relative flex items-center text-sm h-full w-20 text-white">
+      <div class="relative flex items-center text-sm h-full w-24 text-white">
         <%= heroicon "shopping-cart", class: "w-12 h-12 text-white" %>
         <% if @current_cart && @current_cart.cart_items.any? %>
           <div class="flex items-center justify-center border border-white absolute h-4 w-4 p-3 top-0 right-8 rounded-full bg-red-800 text-white">
             <%= @current_cart.cart_items.count %>
           </div>
         <% end %>
-        <p class="pt-4">Cart</p>
+        <p class="pt-4 text-lg">Cart</p>
       </div>
     <% end %>
   </div>

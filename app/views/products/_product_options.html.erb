@@ -5,7 +5,7 @@
         <% options.each do |option| %>
           <label data-action="change->cart#selectOption" data-value="<%= option %>">
             <input type="radio" name="selected_option" class="hidden peer" value="<%= option %>">
-            <span class="option-box px-4 py-2 border-2 border-gray-300 mr-2 rounded text-center font-semibold text-gray-700 hover:bg-gray-400 peer-checked:bg-gray-400 peer-checked:text-white">
+            <span class="option-box px-4 py-2 border-2 border-gray-300 mr-2 rounded text-center font-semibold text-gray-700 text-xl hover:bg-gray-400 peer-checked:bg-gray-400 peer-checked:text-white">
               <%= option %>
             </span>
           </label>
@@ -24,7 +24,7 @@
         <h2 class="mb-2">Item in Cart!</h2>
         <%= link_to "View Cart", cart_path(@current_cart.secret_id), class: "bg-slate-400 text-black px-4 py-2 mt-4 w-fit rounded cursor-pointer" %>
       <% else %>
-        <button type="submit" class="bg-slate-400 text-black px-4 py-2 mt-4 rounded cursor-pointer">
+        <button type="submit" class="bg-slate-400 text-black text-2xl px-4 py-2 mt-4 rounded cursor-pointer">
           Add to Cart
         </button>
       <% end %>

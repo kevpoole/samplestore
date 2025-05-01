@@ -1,6 +1,6 @@
 <div class="flex mx-4 lg:my-0 my-8 w-full flex-col bg-white md:flex-row " data-controller="image-swap">  
   <div class="md:w-1/2 flex items-center">
-    <div class="flex flex-col bg-white p-8">
+    <div class="flex flex-col text-2xl bg-white p-8">
       <div class="flex bg-white">
         <%= link_to "Store", categories_path %>
         <%= link_to " > #{@product.category.name}", @product.category if @product.category %>
@@ -17,9 +17,9 @@
     <% if current_admin %>
       <%= link_to "Back to Admin", admin_products_path, class: "border border-2 border-gray-400 rounded-lg text-center absolute top-4 right-16 text-xl py-1 px-2 w-fit" %>
     <% end %>
-    <p class="text-3xl tracking-widest font-orbitron"><%= @product.name %></p>
-    <p class="text-2xl py-2"><%= @product.description %></p>
-    <p class="text-2xl"><%= number_to_currency @product.price %></p>
+    <p class="text-4xl tracking-widest font-orbitron"><%= @product.name %></p>
+    <p class="text-3xl py-2"><%= @product.description %></p>
+    <p class="text-3xl"><%= number_to_currency @product.price %></p>
 
   
      <% if @product.category.name == "T-Shirts" %>
