@@ -78,4 +78,4 @@ gem 'dotenv-rails'
 
 gem 'net-smtp'
 
-gem 'aws-sdk-s3'
+# gem 'aws-sdk-s3'
